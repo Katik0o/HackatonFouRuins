@@ -10,20 +10,19 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class UserDTO {
+public class UserDto {
     private Long id;
     private String surname;
     private String name;
     private String patronim;
-    private String password;
     private String inn;
     private String accNumber;
     private String passport;
     private String snils;
 
 
-    public static UserDTO toModel(User user){
-        return new UserDTO(user.getId(), user.getSurname(), user.getName(),user.getPatronim(),user.getEmail(),
+    public static UserDto toModel(User user){
+        return new UserDto(user.getId(), user.getSurname(), user.getName(),user.getPatronim(),
                 user.getPassport(), user.getAccNumber(),user.getInn(),user.getSnils());
     }
 }

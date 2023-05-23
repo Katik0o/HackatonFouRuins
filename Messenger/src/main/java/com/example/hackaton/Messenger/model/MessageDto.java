@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class MessageDTO {
+public class MessageDto {
     private Long id;
     private String text;
     private Long chat_id;
@@ -18,19 +18,19 @@ public class MessageDTO {
     private Long manager_id;
     private String  date;
 
-    public static MessageDTO build(Message message){
-        return new MessageDTO(message.getId(), message.getContent(),message.getChat().getId(),message.getUser().getId(),
+    public static MessageDto build(Message message){
+        return new MessageDto(message.getId(), message.getContent(),message.getChat().getId(),message.getUser().getId(),
                 message.getManager().getId(), message.getDate());
     }
 
-    public static Message toMessage(MessageDTO messageDTO){
+    public static Message toMessage(MessageDto messageDTO){
         Message message = new Message();
         message.setContent(messageDTO.getText());
         return message;
     }
 
-    public static List<MessageDTO> buildList(List<Message> messages){
-        return messages.stream().map(MessageDTO::build).toList();
+    public static List<MessageDto> buildList(List<Message> messages){
+        return messages.stream().map(MessageDto::build).toList();
     }
 
 }

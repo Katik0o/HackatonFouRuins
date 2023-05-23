@@ -33,6 +33,7 @@ public class User {
     private String accNumber;
     private String passport;
     private String snils;
+    private boolean enabled;
 
     @Column(nullable = false, unique = true)
     private String email;

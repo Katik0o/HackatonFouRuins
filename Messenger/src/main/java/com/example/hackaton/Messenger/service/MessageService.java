@@ -2,7 +2,7 @@ package com.example.hackaton.Messenger.service;
 
 import com.example.hackaton.Messenger.entity.Chat;
 import com.example.hackaton.Messenger.entity.Message;
-import com.example.hackaton.Messenger.model.MessageDTO;
+import com.example.hackaton.Messenger.model.MessageDto;
 import com.example.hackaton.Messenger.repo.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class MessageService {
@@ -29,11 +28,11 @@ public class MessageService {
         return message;
     }
 
-    public Message save(MessageDTO messageDto, Long chat_id){
+    public Message save(MessageDto messageDto, Long chat_id){
         String date = Integer.toString(Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) +":"+ Integer.toString(Calendar.getInstance().get(Calendar.MINUTE));
 
 
-        Message message=MessageDTO.toMessage(messageDto);
+        Message message= MessageDto.toMessage(messageDto);
         message.setUser(userService.findById(messageDto.getUser_id()));
         Chat chat = chatService.findById(chat_id).orElseThrow();
         message.setChat(chat);
