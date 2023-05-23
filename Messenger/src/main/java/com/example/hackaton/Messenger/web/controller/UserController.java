@@ -4,6 +4,7 @@ import com.example.hackaton.Messenger.model.UserDTO;
 import com.example.hackaton.Messenger.service.UserService;
 import com.example.hackaton.Messenger.spring.JwtResponse;
 import com.example.hackaton.Messenger.spring.JwtUtils;
+import com.example.hackaton.Messenger.web.form.UserForm;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +20,11 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @Autowired
-    MailClient mailClient;
-
-    @Autowired
-    AuthenticzationManager authenticationManager;
+//    @Autowired
+//    MailClient mailClient;
+//
+//    @Autowired
+//    AuthenticzationManager authenticationManager;
 
 
     @Autowired
@@ -34,24 +35,24 @@ public class UserController {
     private static UserForm userFormSt;
     private static String confirmCodeSt;
 
-    @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateJwtToken(authentication);
-
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
-
-        return ResponseEntity.ok(new JwtResponse(jwt,
-                userDetails.getId(),
-                userDetails.getUsername(),
-                userDetails.getEmail()
-        ));
-    }
+//    @PostMapping("/login")
+//    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+//
+//        Authentication authentication = authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+//
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        String jwt = jwtUtils.generateJwtToken(authentication);
+//
+//        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+//
+//
+//        return ResponseEntity.ok(new JwtResponse(jwt,
+//                userDetails.getId(),
+//                userDetails.getUsername(),
+//                userDetails.getEmail()
+//        ));
+//    }
 
 
     @PostMapping("/registration")
