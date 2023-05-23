@@ -29,6 +29,9 @@ public class Chat  {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Column(nullable = false)
+    private boolean isSolved;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "problem_id")
     private Problem problem;
@@ -42,6 +45,7 @@ public class Chat  {
     @JoinColumn (name = "user_id", referencedColumnName = "id",
             nullable = false, updatable = false)
     private User user;
+
 
     @OneToMany(mappedBy = "chat",cascade = CascadeType.ALL)
     private List<Message> messages;

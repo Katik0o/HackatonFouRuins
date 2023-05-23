@@ -9,4 +9,7 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User,Long> {
     @Override
     Optional<User> findById(Long ID);
+    long countByEmail(String email);
+
+    Optional<User> findByEmail(String email);
 }
