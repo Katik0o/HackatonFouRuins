@@ -31,9 +31,7 @@ public class Manager {
     private Boolean isAvailable;
 
 
-    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
-    @JoinColumn (name = "manager_id", referencedColumnName = "id",
-            nullable = false, updatable = false)
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<Chat> chats = new HashSet<>();
 
 

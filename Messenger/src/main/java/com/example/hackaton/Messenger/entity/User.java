@@ -24,17 +24,25 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, unique = true)
-    private String nickname;
     @Column(nullable = false)
+    private String surname;
+    private String name;
+    private String patronim;
     private String password;
+    private String inn;
+    private String accNumber;
+    private String passport;
+    private String snils;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+
 
     @OneToMany(cascade = CascadeType.REMOVE)
     private List<Message> messages;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JoinColumn (name = "user_id", referencedColumnName = "id",
-            nullable = false, updatable = false)
     private Set<Chat> chats = new HashSet<>();
 
 

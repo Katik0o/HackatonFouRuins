@@ -12,10 +12,18 @@ import lombok.Setter;
 @Setter
 public class UserDTO {
     private Long id;
-    private String nickname;
+    private String surname;
+    private String name;
+    private String patronim;
+    private String password;
+    private String inn;
+    private String accNumber;
+    private String passport;
+    private String snils;
 
 
     public static UserDTO toModel(User user){
-        return new UserDTO(user.getId(), user.getNickname());
+        return new UserDTO(user.getId(), user.getSurname(), user.getName(),user.getPatronim(),user.getEmail(),
+                user.getPassport(), user.getAccNumber(),user.getInn(),user.getSnils());
     }
 }

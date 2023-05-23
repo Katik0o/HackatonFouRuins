@@ -49,6 +49,6 @@ public class Problem {
     )
     private Set<Answer> answers = new HashSet<>();
 
-    @OneToOne(mappedBy = "problem_id")
+    @OneToOne(mappedBy = "problem")
     private Chat chat;
 }
