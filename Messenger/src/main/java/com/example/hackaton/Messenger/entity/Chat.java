@@ -34,18 +34,20 @@ public class Chat  {
     private Problem problem;
 
     @ManyToOne
-    private User user;
-
-    @ManyToOne
+    @JoinColumn (name = "manager_id", referencedColumnName = "id",
+            nullable = false, updatable = false)
     private Manager manager;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn (name = "user_id", referencedColumnName = "id",
+            nullable = false, updatable = false)
+    private User user;
 
     @OneToMany(mappedBy = "chat",cascade = CascadeType.ALL)
     private List<Message> messages;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    Set<User> users = new HashSet<>();
+
 
 
 }

@@ -33,8 +33,6 @@ public class User {
     private List<Message> messages;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JoinColumn (name = "user_id", referencedColumnName = "id",
-            nullable = false, updatable = false)
     private Set<Chat> chats = new HashSet<>();
 
 
