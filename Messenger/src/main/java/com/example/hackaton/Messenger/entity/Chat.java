@@ -29,12 +29,15 @@ public class Chat  {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "problem_id")
+    private Problem problem;
+
     @ManyToOne
     private User user;
 
     @ManyToOne
     private Manager manager;
-
 
 
     @OneToMany(mappedBy = "chat",cascade = CascadeType.ALL)

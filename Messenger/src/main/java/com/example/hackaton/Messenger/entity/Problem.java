@@ -1,4 +1,5 @@
 package com.example.hackaton.Messenger.entity;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
@@ -46,5 +47,8 @@ public class Problem {
                     @JoinColumn(name = "answe_id", referencedColumnName = "id",
                             nullable = false, updatable = false)}
     )
-    private Set<Manager> answers = new HashSet<>();
+    private Set<Answer> answers = new HashSet<>();
+
+    @OneToOne(mappedBy = "problem_id")
+    private Chat chat;
 }
