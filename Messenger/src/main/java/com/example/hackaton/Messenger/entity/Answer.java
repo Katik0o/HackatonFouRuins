@@ -29,7 +29,7 @@ public class Answer {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "prblm_answ",
             joinColumns = {
-                    @JoinColumn(name = "answe_id", referencedColumnName = "id",
+                    @JoinColumn(name = "answer_id", referencedColumnName = "id",
                             nullable = false, updatable = false)},
             inverseJoinColumns = {
                     @JoinColumn(name = "problem_id", referencedColumnName = "id",

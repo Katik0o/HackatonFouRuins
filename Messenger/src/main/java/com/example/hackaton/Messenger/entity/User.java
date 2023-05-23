@@ -39,7 +39,7 @@ public class User {
 
 
 
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
     private List<Message> messages;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

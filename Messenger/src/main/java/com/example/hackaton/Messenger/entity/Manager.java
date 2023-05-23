@@ -32,10 +32,16 @@ public class Manager {
 
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "manager_id")
     private Set<Chat> chats = new HashSet<>();
 
 
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "manager",cascade = CascadeType.REMOVE)
     private List<Message> messages;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Problem problem;
+
+
 
 }

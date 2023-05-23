@@ -36,9 +36,9 @@ public class Chat  {
     @JoinColumn(name = "problem_id")
     private Problem problem;
 
-    @ManyToOne
-    @JoinColumn (name = "manager_id", referencedColumnName = "id",
-            nullable = false, updatable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn (name = "manager_id", referencedColumnName = "id",
+//            nullable = false, updatable = false)
     private Manager manager;
 
     @ManyToOne(cascade = CascadeType.ALL)
