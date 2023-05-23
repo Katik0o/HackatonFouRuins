@@ -27,16 +27,16 @@ public class Problem {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "problem_manager",
-    joinColumns = {
-            @JoinColumn(name = "problem_id", referencedColumnName = "id",
-                    nullable = false, updatable = false)},
-            inverseJoinColumns = {
-            @JoinColumn(name = "chat_id", referencedColumnName = "id",
-                    nullable = false, updatable = false)}
-    )
-    private Set<Manager> managers = new HashSet<>();
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "problem_manager",
+//    joinColumns = {
+//            @JoinColumn(name = "problem_id", referencedColumnName = "id",
+//                    nullable = false, updatable = false)},
+//            inverseJoinColumns = {
+//            @JoinColumn(name = "chat_id", referencedColumnName = "id",
+//                    nullable = false, updatable = false)}
+//    )
+//    private Set<Manager> managers = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "prblm_answ",
@@ -51,4 +51,8 @@ public class Problem {
 
     @OneToOne(mappedBy = "problem")
     private Chat chat;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "problem_id")
+    private Set<Manager> managers = new HashSet<>();
 }

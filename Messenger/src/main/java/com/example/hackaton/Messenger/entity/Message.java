@@ -32,11 +32,11 @@ public class Message {
     @JoinColumn(name = "chat_id")
     private Chat chat;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "manager_id")
     private Manager manager;
 

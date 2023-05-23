@@ -19,6 +19,7 @@ public class MessageRequest {
     private String text;
     private Long chat_id;
     private Long user_id;
+    //private String username;
     private Long manager_id;
     private String date;
 

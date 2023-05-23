@@ -33,14 +33,14 @@ public class User {
     private String accNumber;
     private String passport;
     private String snils;
-    private boolean enable;
+    private boolean enabled;
 
     @Column(nullable = false, unique = true)
     private String email;
 
 
 
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
     private List<Message> messages;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
