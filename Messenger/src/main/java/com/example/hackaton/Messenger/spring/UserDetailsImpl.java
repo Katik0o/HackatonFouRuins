@@ -13,50 +13,112 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class UserDetailsImpl implements UserDetails {
+public class UserDetailsImpl implements UserDetails { //      JWT user
     private static final long serialVersionUID = 1L;
 
     private Long id;
-
-
-    private String username;
-
+    private String name;
+    private String surname;
+    private String patronim;
+    private String inn;
+    private String accNumber;
+    private String passport;
+    private String snils;
     private String email;
-
     @JsonIgnore
     private String password;
-
+    //private boolean enable;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(Long id,  String username, String email, String password) {
+
+
+    public UserDetailsImpl(Long id,
+                           String name,
+                           String surname,
+                           String patronim,
+                           String inn,
+                           String accNumber,
+                           String passport,
+                           String snils,
+                           String email,
+                           String password
+                           )   {
         this.id = id;
-        this.username = username;
+        this.name = name;
+        this.surname = surname;
+        this.patronim = patronim;
+        this.inn = inn;
+        this.accNumber = accNumber;
+        this.passport = passport;
+        this.snils = snils;
+        this.email = email;
         this.password = password;
-        this.email=email;
+       // this.enable = enable;
+
     }
 
+
+
     public static UserDetailsImpl build(User user) {
-
-
         return new UserDetailsImpl(
                 user.getId(),
                 user.getName(),
+                user.getSurname(),
+                user.getPatronim(),
+                user.getInn(),
+                user.getAccNumber(),
+                user.getPassport(),
+                user.getSnils(),
                 user.getEmail(),
-                user.getPassword()
-        );
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+                user.getPassword())
+                ;
     }
 
     public Long getId() {
         return id;
     }
 
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+
+    public String getPatronim() {
+        return patronim;
+    }
+
+
+    public String getInn() {
+        return inn;
+    }
+
+
+    public String getAccNumber() {
+        return accNumber;
+    }
+
+
+    public String getPassport() {
+        return passport;
+    }
+
+    public String getSnils() {
+        return snils;
+    }
+
     public String getEmail() {
         return email;
+    }
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
     }
 
     @Override
@@ -66,8 +128,9 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return null;
     }
+
 
 
     @Override

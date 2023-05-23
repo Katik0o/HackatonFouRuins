@@ -1,7 +1,4 @@
 package com.example.hackaton.Messenger.web.controller;
-import com.example.hackaton.Messenger.model.LoginRequest;
-import com.example.hackaton.Messenger.model.UserDTO;
-import com.example.hackaton.Messenger.service.UserService;
 import com.example.hackaton.Messenger.spring.JwtResponse;
 import com.example.hackaton.Messenger.spring.JwtUtils;
 import com.example.hackaton.Messenger.web.form.UserForm;
@@ -59,7 +56,7 @@ public class UserController {
     public ResponseEntity<?> userRegistrationSubmit(@Valid @RequestBody UserForm userForm){
         confirmCodeSt = UUID.randomUUID().toString();
         userFormSt=userForm;
-        //mailClient.sendMail( userForm.getEmail(),"Email confirm", confirmCodeSt);
+        mailClient.sendMail( userForm.getEmail(),"Email confirm", confirmCodeSt);
         return ResponseEntity.ok("true");
     }
 
@@ -67,7 +64,7 @@ public class UserController {
     @PostMapping("/accept")
     public ResponseEntity<?> userRegistrationAccept(){
 
-        return ResponseEntity.ok(UserDTO.toModel(userService.save(userFormSt)));
+        return ResponseEntity.ok(UserModel.toModel(userService.save(userFormSt)));
 
 
     }

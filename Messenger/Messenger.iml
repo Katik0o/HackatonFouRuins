@@ -33,9 +33,7 @@
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-jpa:3.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:3.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-orm:6.0.9" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-context:6.0.9" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:6.0.9" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-beans:6.0.9" level="project" />
     <orderEntry type="library" name="Maven: jakarta.annotation:jakarta.annotation-api:2.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aspects:6.0.9" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-thymeleaf:3.1.0" level="project" />
@@ -59,7 +57,6 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-parameter-names:2.15.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-tomcat:3.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:10.1.8" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-web:6.0.9" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:6.0.9" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-messaging:6.0.9" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-websocket:6.0.9" level="project" />
@@ -101,16 +98,10 @@
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-el:10.1.8" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-security:3.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:6.0.9" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:6.1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:6.1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-expression:6.0.9" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.security:spring-security-test:6.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:6.1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-crypto:6.1.0" level="project" />
     <orderEntry type="library" name="Maven: io.micrometer:micrometer-observation:1.11.0" level="project" />
     <orderEntry type="library" name="Maven: io.micrometer:micrometer-commons:1.11.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:9.0.63" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-annotations-api:10.1.8" level="project" />
     <orderEntry type="library" name="Maven: io.jsonwebtoken:jjwt:0.2" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:2.0.7" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.15.0" level="project" />
@@ -120,5 +111,15 @@
     <orderEntry type="library" name="Maven: jakarta.validation:jakarta.validation-api:3.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.logging:jboss-logging:3.5.0.Final" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml:classmate:1.5.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:10.1.8" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-annotations-api:10.1.8" level="project" />
+    <orderEntry type="library" name="Maven: org.mortbay.jetty:servlet-api:3.0.20100224" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-crypto:6.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:5.7.1" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-beans:6.0.9" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context:6.0.9" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:6.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-expression:6.0.9" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-web:6.0.9" level="project" />
   </component>
 </module>
