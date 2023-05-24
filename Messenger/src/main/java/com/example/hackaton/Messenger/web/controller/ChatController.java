@@ -11,11 +11,12 @@ import com.example.hackaton.Messenger.service.ChatService;
 import com.example.hackaton.Messenger.service.ManagerService;
 import com.example.hackaton.Messenger.service.MessageService;
 import com.example.hackaton.Messenger.service.UserService;
-import jakarta.validation.Valid;
+//import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -45,8 +46,7 @@ public class ChatController {
 
         if( chatService.findById(chat_id).isPresent()){
             MessageDto saved = MessageDto.build(messageService.save(messageDto, chat_id));
-
-            //        return ResponseEntity.ok().build(messageDto);
+                    return ResponseEntity.ok().build(messageDto);
             return ResponseEntity.ok(saved);
         }else{
             System.err.println("Chat not found with this id");

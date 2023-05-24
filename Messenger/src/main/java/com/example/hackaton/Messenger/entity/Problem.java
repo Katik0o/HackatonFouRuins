@@ -2,7 +2,7 @@ package com.example.hackaton.Messenger.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
