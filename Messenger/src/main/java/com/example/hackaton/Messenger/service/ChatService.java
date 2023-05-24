@@ -32,14 +32,13 @@ public class ChatService {
 
     public Problem getProblemID(Long ID){return problemRepository.findById(ID).get();}
 
-    public Chat save(Long chat_id, Long manager_id){
+    public Chat create(Long chat_id,Long problem_id){
         Chat chat = findById(chat_id).orElseThrow();
-        chat.setManager(managerRepository.findById(manager_id).orElseThrow());
-        Manager manager = managerRepository.findById(manager_id).get();
-        manager.setIsAvailable(false);
-        managerRepository.save(manager);
+        Problem problem = problemRepository.findById(problem_id).get();
+        chat.setProblem(problem);
         return chatRepository.save(chat);
     }
+    //public Chat update(Long)
 
 
 }

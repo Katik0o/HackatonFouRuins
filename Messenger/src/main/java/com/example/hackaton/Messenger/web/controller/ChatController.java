@@ -12,11 +12,12 @@ import com.example.hackaton.Messenger.service.ManagerService;
 import com.example.hackaton.Messenger.service.MessageService;
 import com.example.hackaton.Messenger.service.UserService;
 //import jakarta.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+//import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -41,12 +42,13 @@ public class ChatController {
     @Autowired
     private ChatRepository chatRepository;
 
+
     @PostMapping("/chat/{chat_id}") //sending message
     public ResponseEntity<?> sendingMessage(@Valid @RequestBody MessageDto messageDto, @PathVariable Long chat_id ){
 
         if( chatService.findById(chat_id).isPresent()){
             MessageDto saved = MessageDto.build(messageService.save(messageDto, chat_id));
-                    return ResponseEntity.ok().build(messageDto);
+                    //return ResponseEntity.ok().messageDto.build();
             return ResponseEntity.ok(saved);
         }else{
             System.err.println("Chat not found with this id");
@@ -63,20 +65,18 @@ public class ChatController {
         return ResponseEntity.ok(messageRequests);
     }
 
-//    @PostMapping("{user_id}/{manager_id}/chat")
-//    public ResponseEntity<?> createChat (@PathVariable  Long user_id, @PathVariable Long manager_id){
-//        if(userRepository.findById(user_id).isEmpty()){
-//            return ResponseEntity.ok("нет такого пользователя");
-//        }
-//        Chat chat= new Chat();
-//
-//
-//        return ResponseEntity.ok(ChatDto.build(chatService.save()))
-//
-//    }
+    @PostMapping("{user_id}/{problem_id}/chat")
+    public ResponseEntity<?> createChat (@PathVariable  Long user_id, @PathVariable Long problem_id){
+        if(userRepository.findById(user_id).isEmpty()){
+            return ResponseEntity.ok("нет такого пользователя");
+        }
+        Chat chat= new Chat();
+        return ResponseEntity.ok(ChatDto.build(chatService.create(chat.getId(),problem_id)));
+
+    }
     @PutMapping("/chat/{chat_id}/{problem_id}") //назначение менеджера
-    public ResponseEntity<?> updateChat (@PathVariable Long chat_id, @PathVariable Long manager_id){
-        return ResponseEntity.ok(ChatDto.build(chatService.save(chat_id,manager_id)));
+    public ResponseEntity<?> updateChat (@PathVariable Long chat_id, @PathVariable Long problem_id){
+        return ResponseEntity.ok(ChatDto.build(chatService.create(chat_id,problem_id)));
     }
 
     @PostMapping("/dltmng/{chat_id}/{manager_id}")

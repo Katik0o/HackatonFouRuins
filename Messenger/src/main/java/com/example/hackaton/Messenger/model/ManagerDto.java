@@ -2,7 +2,7 @@ package com.example.hackaton.Messenger.model;
 
 import com.example.hackaton.Messenger.entity.Manager;
 import com.example.hackaton.Messenger.entity.Problem;
-import jakarta.persistence.Column;
+import javax.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
