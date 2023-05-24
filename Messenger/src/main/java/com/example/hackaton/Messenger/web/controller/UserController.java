@@ -1,12 +1,14 @@
 package com.example.hackaton.Messenger.web.controller;
 import com.example.hackaton.Messenger.model.LoginRequest;
 //import com.example.hackaton.Messenger.model.UserDTO;
+import com.example.hackaton.Messenger.model.UserDto;
 import com.example.hackaton.Messenger.service.UserService;
 import com.example.hackaton.Messenger.spring.JwtResponse;
 import com.example.hackaton.Messenger.spring.JwtUtils;
 import com.example.hackaton.Messenger.spring.UserDetailsImpl;
 import com.example.hackaton.Messenger.web.form.UserForm;
 //import jakarta.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -17,7 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+//import javax.validation.Valid;
 import java.util.UUID;
 
 @RestController
@@ -60,7 +62,7 @@ public class UserController {
     @PostMapping("/accept")
     public ResponseEntity<?> userRegistrationAccept(){
 
-        return ResponseEntity.ok(UserDTO.toModel(userService.save(userFormSt)));
+        return ResponseEntity.ok(UserDto.toModel(userService.save(userFormSt)));
     }
 
     @GetMapping("/accept")

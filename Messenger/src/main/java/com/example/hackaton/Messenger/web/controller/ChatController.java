@@ -7,20 +7,21 @@ import com.example.hackaton.Messenger.model.ChatDto;
 import com.example.hackaton.Messenger.model.MessageDto;
 import com.example.hackaton.Messenger.model.MessageRequest;
 import com.example.hackaton.Messenger.repo.ChatRepository;
+import com.example.hackaton.Messenger.repo.ManagerRepository;
 import com.example.hackaton.Messenger.repo.UserRepository;
 import com.example.hackaton.Messenger.service.ChatService;
 import com.example.hackaton.Messenger.service.ManagerService;
 import com.example.hackaton.Messenger.service.MessageService;
 import com.example.hackaton.Messenger.service.UserService;
 //import jakarta.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
-//import javax.validation.Valid;
-import javax.validation.Valid;
+
 import java.util.List;
 
 @RestController
@@ -44,11 +45,13 @@ public class ChatController {
 
     @Autowired
     private ChatRepository chatRepository;
-
+    @Autowired
+    private ManagerRepository managerRepository;
 
     @MessageMapping("/changeMessage")
     @SendTo("/topic/activity")
     public Message change(Message message){
+        System.out.println(message);
         return messageService.save(message);
     }
 
@@ -85,9 +88,13 @@ public class ChatController {
 
     }
 
-    @PutMapping("/chat/{chat_id}/{problem_id}") //назначение менеджера
-    public ResponseEntity<?> updateChat (@PathVariable Long chat_id, @PathVariable Long problem_id){
-        return ResponseEntity.ok(ChatDto.build(chatService.create(chat_id,problem_id)));
+    @PutMapping("/chat/{chat_id}/{manager_id}") //назначение менеджера
+    public ResponseEntity<?> updateChat (@PathVariable Long chat_id, @PathVariable Long manager_id){
+        Manager manager = managerRepository.findById(manager_id).get();
+        if(manager.getIsAvailable()==false){
+            return ResponseEntity.ok("менеджер занят");
+        }
+        return ResponseEntity.ok(ChatDto.build(chatService.create(chat_id,manager_id)));
     }
 
     @PostMapping("/dltmng/{chat_id}/{manager_id}")

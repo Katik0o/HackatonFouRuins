@@ -38,7 +38,13 @@ public class ChatService {
         chat.setProblem(problem);
         return chatRepository.save(chat);
     }
-    //public Chat update(Long)
+    public Chat update(Long chat_id,Long manager_id){
+        Chat chat = findById(chat_id).orElseThrow();
+        Manager manager = managerRepository.findById(manager_id).get();
+            chat.setManager(manager);
+            manager.setIsAvailable(false);
+            return chatRepository.save(chat);
+    }
 
 
 }
