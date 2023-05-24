@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,10 +25,6 @@ import java.util.List;
 public class UserService {
     @Autowired
     UserRepository userRepository;
-
-    @Autowired
-    @Lazy
-    private PasswordEncoder passwordEncoder;
 
     @Autowired
     ChatRepository chatRepository;

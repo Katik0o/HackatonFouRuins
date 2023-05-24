@@ -8,7 +8,6 @@ import com.example.hackaton.Messenger.web.form.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -22,13 +21,6 @@ public class UserController {
     UserService userService;
     @Autowired
     ManagerService managerService;
-
-//    @Autowired
-//    MailClient mailClient;
-//
-//    @Autowired
-//    AuthenticzationManager authenticationManager;
-
 
 
 

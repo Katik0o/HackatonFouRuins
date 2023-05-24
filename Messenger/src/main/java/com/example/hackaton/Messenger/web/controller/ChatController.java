@@ -98,23 +98,6 @@ public class ChatController {
 
 
 
-    @MessageMapping("/message")
-    @SendTo("/chatroom/public")
-    public Message receiveMessage(@Payload Message message){
-        System.out.println(message.toString());
-        return message;
-    }
-    @MessageMapping("/private-message")
-    public Message recMessage(@Payload Message message){
-        simpMessagingTemplate.convertAndSendToUser(message.getChat().getId().toString(),"/private",message);
-        System.out.println(message.toString());
-        return message;
-    }
-
-
-
-
-
 
 
 //    @MessageMapping("/changeMessage")
