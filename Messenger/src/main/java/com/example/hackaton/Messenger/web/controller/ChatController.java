@@ -14,7 +14,6 @@ import com.example.hackaton.Messenger.service.ManagerService;
 import com.example.hackaton.Messenger.service.MessageService;
 import com.example.hackaton.Messenger.service.UserService;
 //import jakarta.validation.Valid;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -22,6 +21,7 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController

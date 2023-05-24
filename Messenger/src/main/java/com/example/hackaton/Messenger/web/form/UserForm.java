@@ -1,9 +1,10 @@
 package com.example.hackaton.Messenger.web.form;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 
 @Setter

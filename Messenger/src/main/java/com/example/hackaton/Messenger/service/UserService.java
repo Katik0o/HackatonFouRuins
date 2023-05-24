@@ -5,7 +5,6 @@ import com.example.hackaton.Messenger.exception.UserExistsException;
 import com.example.hackaton.Messenger.repo.ChatRepository;
 import com.example.hackaton.Messenger.repo.UserRepository;
 import com.example.hackaton.Messenger.web.form.UserForm;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -14,6 +13,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
