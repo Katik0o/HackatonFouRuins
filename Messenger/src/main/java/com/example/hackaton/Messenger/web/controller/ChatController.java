@@ -2,6 +2,7 @@ package com.example.hackaton.Messenger.web.controller;
 
 import com.example.hackaton.Messenger.entity.Chat;
 import com.example.hackaton.Messenger.entity.Manager;
+import com.example.hackaton.Messenger.entity.Message;
 import com.example.hackaton.Messenger.model.ChatDto;
 import com.example.hackaton.Messenger.model.MessageDto;
 import com.example.hackaton.Messenger.model.MessageRequest;
@@ -12,12 +13,14 @@ import com.example.hackaton.Messenger.service.ManagerService;
 import com.example.hackaton.Messenger.service.MessageService;
 import com.example.hackaton.Messenger.service.UserService;
 //import jakarta.validation.Valid;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
 //import javax.validation.Valid;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -41,6 +44,13 @@ public class ChatController {
 
     @Autowired
     private ChatRepository chatRepository;
+
+
+    @MessageMapping("/changeMessage")
+    @SendTo("/topic/activity")
+    public Message change(Message message){
+        return messageService.save(message);
+    }
 
 
     @PostMapping("/chat/{chat_id}") //sending message
@@ -74,6 +84,7 @@ public class ChatController {
         return ResponseEntity.ok(ChatDto.build(chatService.create(chat.getId(),problem_id)));
 
     }
+
     @PutMapping("/chat/{chat_id}/{problem_id}") //назначение менеджера
     public ResponseEntity<?> updateChat (@PathVariable Long chat_id, @PathVariable Long problem_id){
         return ResponseEntity.ok(ChatDto.build(chatService.create(chat_id,problem_id)));

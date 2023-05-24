@@ -9,6 +9,8 @@ import com.example.hackaton.Messenger.web.form.UserForm;
 //import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -65,8 +67,10 @@ public class UserController {
     public ResponseEntity<?> userRegistrationGetCode(){
 
         return ResponseEntity.ok(confirmCodeSt);
-
     }
+
+
+
 
 
 }
