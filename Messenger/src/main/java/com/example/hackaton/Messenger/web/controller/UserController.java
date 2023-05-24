@@ -1,10 +1,12 @@
 package com.example.hackaton.Messenger.web.controller;
 import com.example.hackaton.Messenger.model.LoginRequest;
 import com.example.hackaton.Messenger.model.UserDto;
+import com.example.hackaton.Messenger.service.ManagerService;
 import com.example.hackaton.Messenger.service.UserService;
 
 import com.example.hackaton.Messenger.web.form.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,8 @@ import java.util.UUID;
 public class UserController {
     @Autowired
     UserService userService;
+    @Autowired
+    ManagerService managerService;
 
 //    @Autowired
 //    MailClient mailClient;
@@ -30,6 +34,26 @@ public class UserController {
 
     private static UserForm userFormSt;
     private static String confirmCodeSt;
+
+    @PostMapping("/login")
+    public ResponseEntity authenticateUser(@Valid @RequestBody LoginRequest loginRequest){
+        try{
+           return ResponseEntity.ok(userService.login(loginRequest));
+
+        }catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/login/manager")
+    public ResponseEntity authenticateManager(@Valid @RequestBody LoginRequest loginRequest){
+        try{
+            return ResponseEntity.ok(managerService.login(loginRequest));
+
+        }catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 
 //    @PostMapping("/login")
 //    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -51,29 +75,29 @@ public class UserController {
 //    }
 
 
-    @PostMapping("/registration")
-    public ResponseEntity<?> userRegistrationSubmit(@Valid @RequestBody UserForm userForm){
-        confirmCodeSt = UUID.randomUUID().toString();
-        userFormSt=userForm;
-        //mailClient.sendMail( userForm.getEmail(),"Email confirm", confirmCodeSt);
-        return ResponseEntity.ok("true");
-    }
-
-
-    @PostMapping("/accept")
-    public ResponseEntity<?> userRegistrationAccept(){
-
-        return ResponseEntity.ok(UserDto.toModel(userService.save(userFormSt)));
-
-
-    }
-
-    @GetMapping("/accept")
-    public ResponseEntity<?> userRegistrationGetCode(){
-
-        return ResponseEntity.ok(confirmCodeSt);
-
-    }
+//    @PostMapping("/registration")
+//    public ResponseEntity<?> userRegistrationSubmit(@Valid @RequestBody UserForm userForm){
+//        confirmCodeSt = UUID.randomUUID().toString();
+//        userFormSt=userForm;
+//        //mailClient.sendMail( userForm.getEmail(),"Email confirm", confirmCodeSt);
+//        return ResponseEntity.ok("true");
+//    }
+//
+//
+//    @PostMapping("/accept")
+//    public ResponseEntity<?> userRegistrationAccept(){
+//
+//        return ResponseEntity.ok(UserDto.toModel(userService.save(userFormSt)));
+//
+//
+//    }
+//
+//    @GetMapping("/accept")
+//    public ResponseEntity<?> userRegistrationGetCode(){
+//
+//        return ResponseEntity.ok(confirmCodeSt);
+//
+//    }
 
 
 }

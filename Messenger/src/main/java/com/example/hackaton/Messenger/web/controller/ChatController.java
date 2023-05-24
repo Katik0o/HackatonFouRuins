@@ -6,7 +6,7 @@ import com.example.hackaton.Messenger.entity.Problem;
 import com.example.hackaton.Messenger.model.ChatDto;
 import com.example.hackaton.Messenger.model.MessageDto;
 import com.example.hackaton.Messenger.model.MessageRequest;
-//import com.example.hackaton.Messenger.model.ProblemRequest;
+import com.example.hackaton.Messenger.model.ProblemRequest;
 import com.example.hackaton.Messenger.repo.ChatRepository;
 import com.example.hackaton.Messenger.repo.UserRepository;
 import com.example.hackaton.Messenger.service.ChatService;
@@ -50,11 +50,11 @@ public class ChatController {
     private ProblemService problemService;
 
 
-//    @GetMapping("/table")
-//    public ResponseEntity<?> findProblem(){
-//        List<ProblemRequest> problemRequests = problemRequest.buildList(problemService.getList());
-//        return ResponseEntity.ok(problemRequests);
-//    }
+    @GetMapping("/table")
+    public ResponseEntity<?> findProblem(){
+        List<ProblemRequest> problemRequests = ProblemRequest.buildList(problemService.getList());
+        return ResponseEntity.ok(problemRequests);
+    }
     @MessageMapping("/message")
     @SendTo("/chatroom/public")
     public Message receiveMessage(@Payload Message message){
@@ -67,6 +67,7 @@ public class ChatController {
         System.out.println(message.toString());
         return message;
     }
+
 
 
     @PostMapping("/chat/{chat_id}") //sending message

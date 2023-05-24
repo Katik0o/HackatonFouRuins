@@ -105,6 +105,12 @@
 			<artifactId>spring-security-web</artifactId>
 			<version>5.7.8</version>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
 	</dependencies>
 
 	<build>
