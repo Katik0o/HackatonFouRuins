@@ -1,6 +1,7 @@
 package com.example.hackaton.Messenger.service;
 
 import com.example.hackaton.Messenger.entity.Chat;
+import com.example.hackaton.Messenger.entity.Manager;
 import com.example.hackaton.Messenger.entity.Problem;
 import com.example.hackaton.Messenger.repo.ChatRepository;
 import com.example.hackaton.Messenger.repo.ManagerRepository;
@@ -34,6 +35,9 @@ public class ChatService {
     public Chat save(Long chat_id, Long manager_id){
         Chat chat = findById(chat_id).orElseThrow();
         chat.setManager(managerRepository.findById(manager_id).orElseThrow());
+        Manager manager = managerRepository.findById(manager_id).get();
+        manager.setIsAvailable(false);
+        managerRepository.save(manager);
         return chatRepository.save(chat);
     }
 
