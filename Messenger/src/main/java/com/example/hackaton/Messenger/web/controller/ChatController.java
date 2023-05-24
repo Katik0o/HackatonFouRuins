@@ -1,12 +1,14 @@
 package com.example.hackaton.Messenger.web.controller;
 
 import com.example.hackaton.Messenger.entity.Chat;
+import com.example.hackaton.Messenger.entity.Manager;
 import com.example.hackaton.Messenger.model.ChatDto;
 import com.example.hackaton.Messenger.model.MessageDto;
 import com.example.hackaton.Messenger.model.MessageRequest;
 import com.example.hackaton.Messenger.repo.ChatRepository;
 import com.example.hackaton.Messenger.repo.UserRepository;
 import com.example.hackaton.Messenger.service.ChatService;
+import com.example.hackaton.Messenger.service.ManagerService;
 import com.example.hackaton.Messenger.service.MessageService;
 import com.example.hackaton.Messenger.service.UserService;
 import jakarta.validation.Valid;
@@ -29,6 +31,8 @@ public class ChatController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private ManagerService managerService;
 
     @Autowired
     private ChatService chatService;
@@ -58,10 +62,28 @@ public class ChatController {
 //        }
         return ResponseEntity.ok(messageRequests);
     }
-    @PutMapping("/chat/{chat_id}/{manager_id}") //назначение менеджера
+
+//    @PostMapping("{user_id}/{manager_id}/chat")
+//    public ResponseEntity<?> createChat (@PathVariable  Long user_id, @PathVariable Long manager_id){
+//        if(userRepository.findById(user_id).isEmpty()){
+//            return ResponseEntity.ok("нет такого пользователя");
+//        }
+//        Chat chat= new Chat();
+//
+//
+//        return ResponseEntity.ok(ChatDto.build(chatService.save()))
+//
+//    }
+    @PutMapping("/chat/{chat_id}/{problem_id}") //назначение менеджера
     public ResponseEntity<?> updateChat (@PathVariable Long chat_id, @PathVariable Long manager_id){
         return ResponseEntity.ok(ChatDto.build(chatService.save(chat_id,manager_id)));
     }
+
+    @PostMapping("/dltmng/{chat_id}/{manager_id}")
+    public ResponseEntity<?> deleteManagerFromChat (@PathVariable Long chat_id, @PathVariable Long manager_id){
+        return ResponseEntity.ok(managerService.deleteFromChat(chat_id,manager_id));
+    }
+
 
 
 
