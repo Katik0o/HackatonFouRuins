@@ -40,6 +40,7 @@ public class UserService {
             user = users.get(0);
             System.out.println(user.getName()+" "+user.getPassword());
             if(user.getPassword().equals(loginRequest.getPassword())){
+                user.setEnabled(true);
                 return user;
             } else {
                 throw new Exception("wrong password");

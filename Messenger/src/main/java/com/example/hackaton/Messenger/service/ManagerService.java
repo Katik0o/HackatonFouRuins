@@ -1,9 +1,12 @@
 package com.example.hackaton.Messenger.service;
 
+import com.example.hackaton.Messenger.entity.Chat;
 import com.example.hackaton.Messenger.entity.Manager;
+import com.example.hackaton.Messenger.entity.Problem;
 import com.example.hackaton.Messenger.entity.User;
 import com.example.hackaton.Messenger.exception.UserExistsException;
 import com.example.hackaton.Messenger.model.LoginRequest;
+import com.example.hackaton.Messenger.repo.ChatRepository;
 import com.example.hackaton.Messenger.repo.ManagerRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -18,8 +21,9 @@ import java.util.List;
 public class ManagerService {
     @Autowired
     ManagerRepository managerRepository;
+    @Autowired
+    ChatRepository chatRepository;
 
-    public Manager findById(Long ID){return managerRepository.findById(ID).get();}
     public Manager login(LoginRequest loginRequest) throws Exception {
        Manager manager;
         List<Manager> managers = managerRepository.findByNickname(loginRequest.getUsername());
@@ -36,4 +40,14 @@ public class ManagerService {
             throw new UserExistsException("Manager not exists");
         }
     }
+
+    public List<Chat> findManagerChats(Long manager_id){
+        Manager manager = managerRepository.findById(manager_id).get();
+        Problem problem = manager.getProblem();
+        if (problem.getId() == 0){
+            return chatRepository.findAll();
+        }
+        return chatRepository.findByProblem(problem.getId());
+    }
+
 }

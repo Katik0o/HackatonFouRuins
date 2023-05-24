@@ -31,10 +31,10 @@ public class MessageService {
     public Message save(MessageDto messageDto, Long chat_id){
         String date = Integer.toString(Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) +":"+ Integer.toString(Calendar.getInstance().get(Calendar.MINUTE));
 
-
         Message message= MessageDto.toMessage(messageDto);
         message.setUser(userService.findById(messageDto.getUser_id()));
         Chat chat = chatService.findById(chat_id).orElseThrow();
+        if (chat.isSolved()){chat.setSolved(false);}
         message.setChat(chat);
         message.setDate(date);
         Message saved=messageRepository.save(message);

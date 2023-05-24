@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ManagerRepository extends JpaRepository<Manager,Long> {
-    @Override
+
     Optional<Manager> findById(Long ID);
     List<Manager> findByNickname(String nickname);
 }
