@@ -14,6 +14,8 @@ import com.example.hackaton.Messenger.repo.UserRepository;
 import com.example.hackaton.Messenger.service.*;
 
 import javax.validation.Valid;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -63,34 +65,46 @@ public class ChatController {
     }
 
     @MessageMapping("/chat/create")
+    @JsonProperty
+    @SendTo("/send/chats")
     public Chat createChat(@Payload Long user_id, @Payload Long problem_id){
-        if(userRepository.findById(user_id).isEmpty()){
-            System.out.println("нет такого пользователя");
-        }
-        Chat chat= new Chat();
-        return chatService.create(chat.getId(),problem_id);
+
+//        if(userRepository.findById(user_id).isEmpty()){
+//            System.out.println("нет такого пользователя");
+//        }
+        return chatService.create(user_id,problem_id);
     }
     @MessageMapping("/chat/update")
-    public Chat updateChat (@Payload Long chat_id, @Payload Long manager_id, @Payload Long problem_id){
-        return chatService.update(chat_id,manager_id,problem_id);
+    @SendTo("/send/chats")
+    public Chat updateChat (@Payload Long chat_id,  @Payload Long problem_id){
+        return chatService.update(chat_id,problem_id);
     }
 
     @MessageMapping("/message")
+    @SendTo("/send/message")
     public MessageDto sendingMessage (@Valid @Payload MessageDto messageDto, @Payload Long chat_id) {
             return MessageDto.build(messageService.save(messageDto, chat_id));
     }
 
     @MessageMapping("/message/find")
+    @SendTo("/send/message")
     public List<MessageRequest> finChatMessages (@Payload Long chat_id){
         List<MessageRequest> messageRequests = MessageRequest.buildList(messageService.findAllByChatId(chat_id));
         return messageRequests;
     }
     @MessageMapping("/manager/chats")
+    @SendTo("/send/chats")
     public List<Chat> findManagerChats (@Payload Long manager_id){
         return managerService.findManagerChats(manager_id);
     }
+    @MessageMapping("/user/chats")
+    @SendTo("/send/chats")
+    public List<Chat> findUserChats (@Payload Long user_id){
+        return userService.findUserChats(user_id);
+    }
 
     @MessageMapping("/chat/stop") //???????????????????????????????????
+    @SendTo("/send/chats")
     public void chatStop (@Payload Long chat_id){
         chatService.disableChat(chat_id);
     }

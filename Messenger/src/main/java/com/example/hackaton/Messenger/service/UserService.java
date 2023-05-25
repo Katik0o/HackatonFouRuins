@@ -1,5 +1,8 @@
 package com.example.hackaton.Messenger.service;
 
+import com.example.hackaton.Messenger.entity.Chat;
+import com.example.hackaton.Messenger.entity.Manager;
+import com.example.hackaton.Messenger.entity.Problem;
 import com.example.hackaton.Messenger.entity.User;
 import com.example.hackaton.Messenger.exception.UserExistsException;
 import com.example.hackaton.Messenger.model.LoginRequest;
@@ -52,6 +55,9 @@ public class UserService {
         return users;
     }
     public User findById(Long ID){return userRepository.findById(ID).get();}
+    public List<Chat> findUserChats(Long user_id){
+        return chatRepository.findByUser(user_id);
+    }
 //
 //    public boolean isUserExist(String login){return userRepository.countByInn(login) != 0;}
 //
